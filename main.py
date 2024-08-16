@@ -1,29 +1,39 @@
-import os
 import requests
-import json
 
-# URL máy chủ quản lý thiết bị
-server_url = "https://your-server.com/devices"
+# URL máy chủ quản lý thiết bị và điều khiển
+server_url = "http://demluottruycap.atwebpages.com/devices"
+control_url_template = "http://demluottruycap.atwebpages.com/control/{device_id}"
 
 def lay_thiet_bi():
+    """
+    Lấy danh sách thiết bị từ máy chủ.
+    """
     try:
         response = requests.get(server_url)
+        response.raise_for_status()  # Kiểm tra lỗi HTTP
         thiet_bi = response.json().get('devices', [])
         return thiet_bi
-    except Exception as e:
+    except requests.RequestException as e:
         print(f"Lỗi khi lấy danh sách thiết bị: {e}")
         return []
 
 def dieu_khien_thiet_bi(ma_thiet_bi, lenh):
+    """
+    Gửi lệnh điều khiển đến một thiết bị cụ thể.
+    """
     try:
-        control_url = f"https://your-server.com/control/{ma_thiet_bi}"
+        control_url = control_url_template.format(device_id=ma_thiet_bi)
         payload = {'command': lenh}
         response = requests.post(control_url, json=payload)
+        response.raise_for_status()  # Kiểm tra lỗi HTTP
         print(f"Phản hồi điều khiển: {response.status_code}")
-    except Exception as e:
+    except requests.RequestException as e:
         print(f"Lỗi khi gửi lệnh điều khiển: {e}")
 
 def main():
+    """
+    Chương trình chính để lấy danh sách thiết bị và gửi lệnh điều khiển.
+    """
     thiet_bi = lay_thiet_bi()
     if not thiet_bi:
         print("Không tìm thấy thiết bị.")
