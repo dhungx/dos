@@ -18,7 +18,7 @@ def gui_yeu_cau(ma_luong):
             du_lieu = random._urandom(10) * 1000
             phan_hoi = requests.post(url, data=du_lieu)
             # In ra trạng thái trên cùng một dòng
-            print(f"\rLuồng {ma_luong} end='')
+            print(f"\rLuồng {ma_luong}", end='')
         except Exception as e:
             print(f"\rLuồng {ma_luong}: Lỗi - {e}", end='')
 
