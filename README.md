@@ -1,10 +1,15 @@
 # DDoS Request Flooder
 
+## Tùy chọn thiết bị
+
+- **Dành cho máy yếu.**
+- *[Máy mạnh ](https://github.com/dhungx/ddos)*
+
+
 ## Giới thiệu
 
 DDoS Request Flooder là một công cụ đơn giản để gửi một lượng lớn yêu cầu POST đến một URL nhất định nhằm kiểm tra khả năng chịu tải của máy chủ. Công cụ này sử dụng đa luồng để gửi yêu cầu nhanh chóng và đồng thời.
 
-(Máy yếu nên dùng)
 ## Cài Đặt
 
 Để chạy công cụ này, bạn cần cài đặt Python và thư viện `requests`. Bạn có thể cài đặt thư viện `requests` bằng lệnh:
