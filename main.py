@@ -3,6 +3,7 @@ import requests
 import random
 import threading
 
+os.chdir(os.path.dirname(os.path.realpath(__file__)))
 os.system("cls" if os.name == "nt" else "clear")
 
 url = input("Nhập URL: ")
