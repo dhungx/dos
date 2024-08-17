@@ -1,7 +1,9 @@
-clear
+import os
 import requests
 import random
 import threading
+
+os.system("cls" if os.name == "nt" else "clear")
 
 url = input("Nhập URL: ")
 num_threads = int(input("Luồng (Threads: "))
