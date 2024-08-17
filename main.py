@@ -15,7 +15,7 @@ def send_requests(thread_id):
         try:
             data = random._urandom(10) * 1000
             response = requests.post(url, data=data)
-            print(f"Thread {thread_id}: Đã gửi {i + 1}, Trạng thái code: {response.status_code}")
+            print(f"Thread {thread_id} ")
         except Exception as e:
             print(f"Thread {thread_id}: Error - {e}")
 
