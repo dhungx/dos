@@ -23,7 +23,7 @@ def gui_yeu_cau(ma_luong):
             du_lieu = random._urandom(10) * 1000
             phan_hoi = requests.post(url, data=du_lieu)
             # In ra trạng thái trên cùng một dòng với màu xanh
-            print(f"\r{GREEN}Luồng {ma_luong}{RESET}", end='')
+            print(f"\r{GREEN}Luồng {ma_luong}{RESET}")
         except Exception as e:
             # In ra lỗi trên cùng một dòng với màu đỏ
             print(f"\r{RED}Luồng {ma_luong}: Lỗi - {e}{RESET}", end='')
