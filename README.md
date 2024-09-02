@@ -22,5 +22,5 @@ python3 main.py
 ```
 
 ## Thử Nghiệm
-[Trang web có thể tấn công](http://testtools.atwebpages.com/)
+[Trang web được phép tấn công](http://testtools.atwebpages.com/)
 
