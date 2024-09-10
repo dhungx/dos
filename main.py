@@ -1,6 +1,11 @@
 import threading
 import requests
 
+print("""
+ViBoss Studio  X   VorTex
+http://github.com/dhungx/ 
+""")
+
 def tan_cong(target):
     try:
         while True:
