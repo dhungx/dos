@@ -1,8 +1,6 @@
-import threading
+import os
 import requests
-
-os.system("cls" if os.name == "nt" else "clear")
-
+import threading
 
 def tan_cong(target):
     try:
@@ -12,12 +10,34 @@ def tan_cong(target):
     except requests.exceptions.ConnectionError:
         print("[!!!] Lỗi kết nối!")
 
+def print_centered_red(text):
+    # Thay đổi màu sắc văn bản sang đỏ
+    RED = '\033[91m'
+    RESET = '\033[0m'
+    
+    # Lấy kích thước của cửa sổ terminal
+    try:
+        columns, rows = os.get_terminal_size()
+    except OSError:
+        columns, rows = 80, 20
+
+    # Căn giữa văn bản
+    lines = text.split('\n')
+    centered_lines = [(line.center(columns)) for line in lines]
+    centered_text = '\n'.join(centered_lines)
+    
+    # In văn bản màu đỏ
+    print(RED + centered_text + RESET)
+
+# Xóa màn hình trước khi in
+os.system("cls" if os.name == "nt" else "clear")
+
 so_luong_luon = 100
 
-print("""
+print_centered_red("""
 ViBoss Studio  X   VorTex
 
-http://github.com/dhungx/ 
+https://github.com/dhungx/ 
 """)
 
 url = input("Nhập URL: ")
