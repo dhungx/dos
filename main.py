@@ -1,6 +1,9 @@
 import threading
 import requests
 
+os.system("cls" if os.name == "nt" else "clear")
+
+
 def tan_cong(target):
     try:
         while True:
