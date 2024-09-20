@@ -13,11 +13,13 @@ DDoS Request Flooder là một công cụ đơn giản để gửi một lượn
 ## Cài Đặt
 
 Để chạy công cụ này, bạn cần cài đặt Python và thư viện `requests`. Bạn có thể cài đặt thư viện `requests` bằng lệnh:
+```
+pip install requests
+```
 
 ```bash
-git clone https://github.com/dhungx/...
-cd ...
-pip install requests
+git clone https://github.com/dhungx/... dos
+cd dos
 python3 main.py
 ```
 
