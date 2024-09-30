@@ -18,9 +18,9 @@ pip install requests
 ```
 
 ```bash
-git clone https://github.com/dhungx/... dos
+git clone https://github.com/dhungx/
 cd dos
-python3 main.py
+python main.py
 ```
 
 ## Thử Nghiệm
